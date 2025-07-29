@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Josias Martinez | Portafolio Profesional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --rojo-metalico: #b30000;
+            --rojo-metalico-oscuro: #800000;
+            --rojo-metalico-claro: #ff3333;
+            --negro-mate: #0a0a0a;
+            --negro-ceniza: #1a1a1a;
+            --gris-metalico: #2d2d2d;
+            --gris-claro: #e6e6e6;
+            --blanco: #ffffff;
+            --sombra-roja: 0 10px 30px rgba(179, 0, 0, 0.3);
+            --sombra-negra: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
+            background: linear-gradient(to bottom, #1a1a1a, #0a0a0a);
+            color: var(--gris-claro);
+            line-height: 1.7;
+            overflow-x: hidden;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        /* Barra de navegación premium */
+        .navbar {
+            background: rgba(10, 10, 10, 0.95);
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem 5%;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: var(--sombra-negra);
+            transition: all 0.4s ease;
+            border-bottom: 1px solid var(--rojo-metalico);
+        }
+
+        .navbar.scrolled {
+            padding: 1rem 5%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            color: var(--rojo-metalico);
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--gris-claro);
+            font-weight: 600;
+            position: relative;
+            padding: 0.5rem 0;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--rojo-metalico);
+            transition: width 0.4s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--rojo-metalico-claro);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Sección Hero con efecto de metal */
+        .hero {
+            text-align: center;
+            padding: 15rem 2rem 8rem;
+            position: relative;
+            background: linear-gradient(to bottom, #1a1a1a, #0a0a0a);
+            color: var(--gris-claro);
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(179, 0, 0, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(179, 0, 0, 0.1) 0%, transparent 40%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+            background: rgba(26, 26, 26, 0.7);
+            border-radius: 20px;
+            box-shadow: var(--sombra-negra);
+            border: 1px solid rgba(179, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .foto-perfil {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--rojo-metalico);
+            margin-bottom: 2rem;
+            box-shadow: var(--sombra-roja);
+            transition: all 0.5s ease;
+            background: linear-gradient(45deg, #1a1a1a, #333);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .foto-perfil::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(179, 0, 0, 0.2), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(45deg) translateX(-100%); }
+            100% { transform: rotate(45deg) translateX(100%); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(to right, var(--gris-claro), var(--rojo-metalico-claro));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            color: rgba(230, 230, 230, 0.9);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Botones premium */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--rojo-metalico), var(--rojo-metalico-oscuro));
+            color: var(--gris-claro);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            margin: 0.5rem;
+            transition: all 0.4s ease;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--sombra-roja);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            font-size: 1rem;
+            text-decoration: none;
+        }
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(179, 0, 0, 0.4);
+            color: var(--blanco);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--rojo-metalico);
+            border: 2px solid var(--rojo-metalico);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--rojo-metalico);
+            color: var(--gris-claro);
+        }
+
+        /* Secciones */
+        .seccion {
+            padding: 8rem 5%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h2 {
+            color: var(--rojo-metalico);
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0 1.5rem;
+        }
+
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--rojo-metalico-oscuro), var(--rojo-metalico), var(--rojo-metalico-claro));
+            border-radius: 2px;
+        }
+
+        .sobre-mi p {
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--gris-claro);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Proyectos estilo tarjetas premium */
+        .proyectos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .proyecto {
+            background: rgba(26, 26, 26, 0.7);
+            padding: 2.5rem;
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--sombra-negra);
+            border: 1px solid rgba(179, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            text-align: center;
+        }
+
+        .proyecto::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--rojo-metalico-oscuro), var(--rojo-metalico), var(--rojo-metalico-oscuro));
+            transition: height 0.4s ease;
+        }
+
+        .proyecto:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--sombra-roja);
+            border-color: var(--rojo-metalico);
+        }
+
+        .proyecto:hover::before {
+            height: 8px;
+        }
+
+        .proyecto h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            color: var(--rojo-metalico-claro);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .proyecto h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--rojo-metalico);
+            border-radius: 2px;
+        }
+
+        .proyecto p {
+            margin-bottom: 2rem;
+            color: var(--gris-claro);
+            font-size: 1.1rem;
+        }
+
+        /* Animaciones personalizadas */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .proyectos-container {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1.2rem 5%;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 12rem 2rem 6rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .foto-perfil {
+                width: 180px;
+                height: 180px;
+            }
+
+            .seccion {
+                padding: 5rem 5%;
+            }
+
+            h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .proyectos-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .proyecto {
+                padding: 2rem;
+            }
+        }
+
+        /* Scroll personalizado */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--rojo-metalico);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--rojo-metalico-claro);
+        }
+
+        /* Separador decorativo */
+        .separator {
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--rojo-metalico), transparent);
+            width: 80%;
+            margin: 5rem auto;
+            max-width: 800px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación premium -->
+    <nav class="navbar">
+        <div class="logo">Josias Mitchel</div>
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#sobre-mi">Sobre mí</a></li>
+            <li><a href="#proyectos">Proyectos</a></li>
+            <li><a href="#blog">Blog</a></li>
+        </ul>
+    </nav>
+
+    <!-- Sección Hero con efecto metálico -->
+<section id="inicio" class="hero">
+    <div class="hero-content">
+        <!-- Agrega tu foto aquí -->
+        <img src="foto.jpg" alt="Josias Martinez" class="foto-perfil floating">
+        <h1 class="fade-in" style="animation-delay: 0.2s;">Josias Martinez</h1>
+        <p class="fade-in" style="animation-delay: 0.4s;">Ingeniero en Sistemas & Desarrollador Web</p>
+        <div class="fade-in" style="animation-delay: 0.6s;">
+            <a href="#proyectos" class="btn">Ver Portafolio</a>
+            <a href="#blog" class="btn btn-outline">Ir al Blog</a>
+        </div>
+    </div>
+</section>
+
+    <!-- Separador decorativo -->
+    <div class="separator"></div>
+
+    <!-- Sobre mí -->
+    <section id="sobre-mi" class="seccion">
+        <h2>Sobre mí</h2>
+        <div class="fade-in">
+            <p>Soy Josias Martinez Mitchel, estudiante de Ingeniería en Sistemas y Computación en la universidad OIM, República Dominicana. Me caracterizo por ser autodidacta, curioso y apasionado por el aprendizaje continuo. He trabajado en diversos proyectos académicos y personales que me han permitido desarrollar habilidades prácticas en áreas como el desarrollo web, blogs educativos, ofimática avanzada y marketing digital.</p>
+        </div>
+        
+        <div class="fade-in" style="animation-delay: 0.2s;">
+            <p>También me estoy formando en marketing digital con cursos certificados por Google, lo que me ha permitido comprender mejor cómo posicionar contenido y manejar plataformas digitales de forma profesional.</p>
+        </div>
+        
+        <div class="fade-in" style="animation-delay: 0.4s;">
+            <p>Disfruto investigar, crear contenido y ayudar a otros con soluciones prácticas, ya sea en diseño web, tecnología, o productividad. Mi enfoque es combinar la estética con la funcionalidad para crear experiencias digitales memorables.</p>
+        </div>
+    </section>
+
+    <!-- Separador decorativo -->
+    <div class="separator"></div>
+
+<!-- Proyectos -->
+<section id="proyectos" class="seccion">
+    <h2>Portafolio de Proyectos</h2>
+    <div class="proyectos-container">
+        <div class="proyecto fade-in">
+            <div class="icono-proyecto">
+                <i class="fas fa-book"></i>
+            </div>
+            <h3>Blog Educativo</h3>
+            <p>Plataforma informativa sobre la evolución del idioma español y su conexión con la identidad hispanoamericana. Desarrollado con tecnologías modernas para una experiencia de lectura óptima.</p>
+        </div>
+        
+        <div class="proyecto fade-in" style="animation-delay: 0.2s;">
+            <div class="icono-proyecto">
+                <i class="fas fa-laptop-code"></i>
+            </div>
+            <h3>Curso Avanzado de Office</h3>
+            <p>Programa de formación completo con módulos interactivos para dominar Excel, Word y PowerPoint. Incluye ejercicios prácticos y evaluaciones automatizadas.</p>
+        </div>
+        
+        <div class="proyecto fade-in" style="animation-delay: 0.4s;">
+            <div class="icono-proyecto">
+                <i class="fas fa-briefcase"></i>
+            </div>
+            <h3>Portafolio Digital</h3>
+            <p>Diseño y desarrollo de este portafolio profesional utilizando las últimas tecnologías web para mostrar mis habilidades de manera creativa y efectiva.</p>
+        </div>
+        
+        <div class="proyecto fade-in" style="animation-delay: 0.6s;">
+            <div class="icono-proyecto">
+                <i class="fas fa-podcast"></i>
+            </div>
+            <h3>Plataforma de Podcast</h3>
+            <p>Solución integral para alojar y distribuir contenido en audio sobre tecnología, superación personal y temas cristianos. Integración con Spotify y Apple Podcasts.</p>
+        </div>
+        
+        <div class="proyecto fade-in" style="animation-delay: 0.8s;">
+            <div class="icono-proyecto">
+                <i class="fas fa-quote-right"></i>
+            </div>
+            <h3>Frases Motivacionales</h3>
+            <p>Aplicación web interactiva con frases de superación y contenido cristiano. Diseño responsive y sistema de categorías para fácil navegación.</p>
+        </div>
+        
+        <div class="proyecto fade-in" style="animation-delay: 1s;">
+            <div class="icono-proyecto">
+                <i class="fas fa-rocket"></i>
+            </div>
+            <h3>Sistema de Gestión</h3>
+            <p>Plataforma empresarial para optimizar procesos internos con módulos personalizables, panel de control y generación de reportes automatizados.</p>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Estilos para los iconos de proyectos */
+    .icono-proyecto {
+        font-size: 2.5rem;
+        color: var(--rojo-metalico);
+        margin-bottom: 1.5rem;
+        transition: all 0.4s ease;
+        position: relative;
+    }
+    
+    .icono-proyecto::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background: var(--rojo-metalico);
+        border-radius: 2px;
+        transition: width 0.3s ease;
+    }
+    
+    .proyecto:hover .icono-proyecto {
+        transform: scale(1.1);
+        color: var(--rojo-metalico-claro);
+    }
+    
+    .proyecto:hover .icono-proyecto::after {
+        width: 70px;
+        background: var(--rojo-metalico-claro);
+    }
+    
+    .proyecto h3 {
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+        color: var(--rojo-metalico-claro);
+        position: relative;
+        padding-bottom: 1rem;
+    }
+    
+    .proyecto h3::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: var(--rojo-metalico);
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+    
+    .proyecto:hover h3::after {
+        background: var(--rojo-metalico-claro);
+        width: 100px;
+    }
+</style>
+
+    <!-- Separador decorativo -->
+    <div class="separator"></div>
+
+    <!-- Blog -->
+    <section id="blog" class="seccion">
+        <h2>Mi Blog</h2>
+        <div class="fade-in">
+            <p>Explora mis artículos sobre tecnología, desarrollo web y marketing digital donde comparto conocimientos, experiencias y consejos prácticos para la comunidad.</p>
+        </div>
+        
+        <div class="fade-in" style="animation-delay: 0.2s; text-align: center; margin-top: 3rem;">
+            <a href="https://sites.google.com/view/josias-martinez-mitchel/inicio" class="btn">Visitar el Blog</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--negro-mate); text-align: center; padding: 3rem; color: var(--gris-claro); position: relative; border-top: 1px solid var(--rojo-metalico);">
+        <div class="logo" style="font-size: 1.8rem; margin-bottom: 1.5rem;">Josias Martinez</div>
+        <p style="margin-bottom: 1rem;">Ingeniero en Sistemas & Desarrollador Web</p>
+        <p>© 2025 Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Efecto de navbar al hacer scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Animación de aparición al hacer scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        fadeObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            fadeElements.forEach(element => {
+                fadeObserver.observe(element);
+            });
+            
+            // Efecto de flotación para la foto de perfil
+            const fotoPerfil = document.querySelector('.foto-perfil');
+            if (fotoPerfil) {
+                setInterval(() => {
+                    fotoPerfil.style.transform = 'translateY(-10px)';
+                    setTimeout(() => {
+                        fotoPerfil.style.transform = 'translateY(0)';
+                    }, 1500);
+                }, 3000);
+            }
+            
+            // Smooth scrolling para los enlaces
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Efecto de scroll para proyectos
+            const proyectos = document.querySelectorAll('.proyecto');
+            proyectos.forEach(proyecto => {
+                proyecto.addEventListener('mouseenter', () => {
+                    proyecto.style.transform = 'translateY(-10px)';
+                    proyecto.style.boxShadow = '0 15px 40px rgba(179, 0, 0, 0.4)';
+                });
+                
+                proyecto.addEventListener('mouseleave', () => {
+                    proyecto.style.transform = 'translateY(0)';
+                    proyecto.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.5)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
