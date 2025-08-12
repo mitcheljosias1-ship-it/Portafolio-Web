@@ -537,6 +537,24 @@
     <!-- Separador decorativo -->
     <div class="separator"></div>
 
+<!-- Apartado Proyectos con Número Mágico -->
+<section id="proyecto-numero-magico" class="seccion">
+    <h2>Proyectos</h2>
+    <div class="proyecto fade-in" style="max-width: 400px; margin: 0 auto;">
+        <h3>Número Mágico</h3>
+        <p>Adivina el número mágico entre 1 y 100. ¡Tienes 10 intentos!</p>
+        <form id="magico-form" autocomplete="off" style="margin-bottom: 1rem;">
+            <input type="number" id="magico-input" min="1" max="100" required placeholder="Tu número" style="padding: 0.5rem; width: 120px; border-radius: 5px; border: 1px solid #b30000;">
+            <button type="submit" class="btn" style="padding: 0.5rem 1.5rem; font-size: 1rem;">Probar</button>
+        </form>
+        <div id="magico-mensaje" style="min-height: 2.5rem; margin-bottom: 0.5rem;"></div>
+        <div id="magico-intentos" style="color: #b30000; font-weight: bold;"></div>
+        <button id="magico-reiniciar" class="btn btn-outline" style="display:none; margin-top:1rem;">Reiniciar</button>
+    </div>
+</section>
+
+<!-- ...existing code... -->
+
 <!-- Proyectos -->
 <section id="proyectos" class="seccion">
     <h2>Portafolio de Proyectos</h2>
@@ -739,5 +757,67 @@
             });
         });
     </script>
+<script>
+
+    // Número Mágico
+    (function() {
+        const form = document.getElementById('magico-form');
+        const input = document.getElementById('magico-input');
+        const mensaje = document.getElementById('magico-mensaje');
+        const intentosDiv = document.getElementById('magico-intentos');
+        const reiniciarBtn = document.getElementById('magico-reiniciar');
+        let numeroMagico = Math.floor(Math.random() * 100) + 1;
+        let intentos = 10;
+        let terminado = false;
+
+        function actualizarIntentos() {
+            intentosDiv.textContent = `Intentos restantes: ${intentos}`;
+        }
+
+        function mostrarMensaje(msg, color = "#fff") {
+            mensaje.textContent = msg;
+            mensaje.style.color = color;
+        }
+
+        form && form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (terminado) return;
+            const valor = parseInt(input.value, 10);
+            if (isNaN(valor) || valor < 1 || valor > 100) {
+                mostrarMensaje("Por favor, ingresa un número válido entre 1 y 100.", "#ff3333");
+                return;
+            }
+            intentos--;
+            if (valor === numeroMagico) {
+                mostrarMensaje("¡Felicidades! Adivinaste el número mágico 🎉", "#00ff99");
+                terminado = true;
+                reiniciarBtn.style.display = "inline-block";
+            } else if (intentos === 0) {
+                mostrarMensaje(`¡Se acabaron los intentos! El número era ${numeroMagico}.`, "#ff3333");
+                terminado = true;
+                reiniciarBtn.style.display = "inline-block";
+            } else if (valor < numeroMagico) {
+                mostrarMensaje("El número es mayor.", "#ffcc00");
+            } else {
+                mostrarMensaje("El número es menor.", "#ffcc00");
+            }
+            actualizarIntentos();
+            input.value = "";
+        });
+
+        reiniciarBtn && reiniciarBtn.addEventListener('click', function() {
+            numeroMagico = Math.floor(Math.random() * 100) + 1;
+            intentos = 10;
+            terminado = false;
+            mostrarMensaje("");
+            actualizarIntentos();
+            reiniciarBtn.style.display = "none";
+        });
+
+        if (form) {
+            actualizarIntentos();
+        }
+    })();
+</script>
 </body>
 </html>
